@@ -1,0 +1,136 @@
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <!-- Dataset -->
+    <mxCell id="A" value="CBIS-DDSM Dataset" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="350" y="20" width="200" height="50" as="geometry"/>
+    </mxCell>
+
+    <!-- Train/Test CSVs -->
+    <mxCell id="B" value="Mass Train CSV&#xa;1318 samples" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="150" y="110" width="160" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="C" value="Mass Test CSV&#xa;378 samples" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="590" y="110" width="160" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eAB" edge="1" source="A" target="B" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eAC" edge="1" source="A" target="C" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Train/Val split -->
+    <mxCell id="D" value="Train/Val Split&#xa;85% / 15%&#xa;stratified" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="155" y="200" width="150" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="eBD" edge="1" source="B" target="D" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <mxCell id="E" value="Train Set&#xa;~1120 samples" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="50" y="310" width="140" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="F" value="Val Set&#xa;~198 samples" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="270" y="310" width="140" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eDE" edge="1" source="D" target="E" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eDF" edge="1" source="D" target="F" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Augmentation -->
+    <mxCell id="H" value="Albumentations Augmentation&#xa;Rotate±20°, HFlip, VFlip&#xa;GaussNoise, Blur&#xa;BrightnessContrast, Elastic" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="20" y="400" width="200" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="H2" value="Resize 224×224&#xa;+ Normalize (ImageNet)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="255" y="400" width="170" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="H3" value="Resize 224×224&#xa;+ Normalize (ImageNet)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="575" y="200" width="170" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eEH" edge="1" source="E" target="H" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eFH2" edge="1" source="F" target="H2" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eCH3" edge="1" source="C" target="H3" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Clinical CSV -->
+    <mxCell id="ENC" value="mass_train_encoded.csv&#xa;45 clinical features&#xa;(excl. pathology_*)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="770" y="390" width="180" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- Image Branch -->
+    <mxCell id="I" value="Image Branch&#xa;DenseNet201&#xa;(ImageNet pretrained)&#xa;→ 512-dim features" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="130" y="510" width="190" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="eHI" edge="1" source="H" target="I" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eH2I" edge="1" source="H2" target="I" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eH3I" edge="1" source="H3" target="I" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Clinical Branch -->
+    <mxCell id="CL" value="Clinical MLP&#xa;FC → BN → ReLU → Dropout&#xa;45 → 256-dim features" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="620" y="510" width="200" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="eENCCL" edge="1" source="ENC" target="CL" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Fusion -->
+    <mxCell id="ATT" value="Bidirectional Cross-Attention Fusion&#xa;Image features ↔ Clinical features" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="280" y="630" width="280" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="eIATT" edge="1" source="I" target="ATT" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eCLATT" edge="1" source="CL" target="ATT" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Fusion MLP + Output -->
+    <mxCell id="FC" value="Fusion MLP&#xa;256-dim, Dropout=0.5" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="330" y="730" width="180" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eATTFC" edge="1" source="ATT" target="FC" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <mxCell id="OUT" value="3-class Softmax&#xa;MALIGNANT | BENIGN&#xa;BENIGN_WITHOUT_CALLBACK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="310" y="820" width="220" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="eFCOUT" edge="1" source="FC" target="OUT" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Loss + Optimizer -->
+    <mxCell id="LOSS" value="Weighted CrossEntropyLoss&#xa;(balanced class weights)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="100" y="930" width="200" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="OPT" value="AdamW + CosineAnnealingWarmRestarts&#xa;LR=1e-4, WD=1e-4, T0=30" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="540" y="930" width="240" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eOUTLOSS" edge="1" source="OUT" target="LOSS" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eOUTOPT" edge="1" source="OUT" target="OPT" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Warmup -->
+    <mxCell id="WU" value="Epoch &lt; 50?&#xa;Warmup phase" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="320" y="1020" width="200" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="eOPTWU" edge="1" source="OPT" target="WU" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eLOSSWU" edge="1" source="LOSS" target="WU" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <mxCell id="IMG_ONLY" value="Image-only mode&#xa;(zero clinical input)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="120" y="1130" width="170" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="FULL" value="Full multimodal&#xa;training" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="560" y="1130" width="170" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eWUIMG" edge="1" source="WU" target="IMG_ONLY" label="Yes" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eWUFULL" edge="1" source="WU" target="FULL" label="No" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Early stopping + checkpoint -->
+    <mxCell id="ES" value="WarmupAware EarlyStopping&#xa;monitor=val_loss, patience=20" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="285" y="1230" width="270" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eIMGES" edge="1" source="IMG_ONLY" target="ES" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eFULLES" edge="1" source="FULL" target="ES" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <mxCell id="BEST" value="Best Checkpoint&#xa;monitor=val_acc (max)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="320" y="1320" width="200" height="50" as="geometry"/>
+    </mxCell>
+    <mxCell id="eESBEST" edge="1" source="ES" target="BEST" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+    <!-- Outputs -->
+    <mxCell id="EVAL" value="Test Evaluation&#xa;Accuracy / Macro-F1&#xa;Per-class Report + CM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="130" y="1420" width="200" height="60" as="geometry"/>
+    </mxCell>
+    <mxCell id="XAI" value="XAI Analysis&#xa;Grad-CAM (DenseBlock4)&#xa;Attention Weights&#xa;Clinical Gradients" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="510" y="1420" width="200" height="70" as="geometry"/>
+    </mxCell>
+    <mxCell id="eBESTEVAL" edge="1" source="BEST" target="EVAL" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+    <mxCell id="eBESTXAI" edge="1" source="BEST" target="XAI" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+  </root>
+</mxGraphModel>

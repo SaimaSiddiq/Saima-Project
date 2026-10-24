@@ -1,0 +1,20 @@
+{
+  "CBIS-DDSM": {
+    "source": "Replace with citation for selected state-of-the-art CBIS-DDSM baseline",
+    "metrics": {
+      "malignant_binary_sensitivity": 0.85,
+      "malignant_binary_specificity": 0.82,
+      "malignant_binary_auc": 0.90,
+      "auc_macro_ovr": 0.88
+    }
+  },
+  "TCGA": {
+    "source": "Replace with citation for selected state-of-the-art TCGA baseline",
+    "metrics": {
+      "malignant_binary_sensitivity": 0.80,
+      "malignant_binary_specificity": 0.78,
+      "malignant_binary_auc": 0.86,
+      "auc_macro_ovr": 0.84
+    }
+  }
+}

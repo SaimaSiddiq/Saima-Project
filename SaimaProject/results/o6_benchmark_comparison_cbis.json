@@ -1,0 +1,28 @@
+[
+  {
+    "dataset": "CBIS-DDSM",
+    "source": "Replace with citation for selected state-of-the-art CBIS-DDSM baseline",
+    "comparisons": {
+      "malignant_binary_sensitivity": {
+        "benchmark": 0.85,
+        "model": 0.0,
+        "delta": -0.85
+      },
+      "malignant_binary_specificity": {
+        "benchmark": 0.82,
+        "model": 1.0,
+        "delta": 0.18000000000000005
+      },
+      "malignant_binary_auc": {
+        "benchmark": 0.9,
+        "model": 0.6635745207173779,
+        "delta": -0.23642547928262214
+      },
+      "auc_macro_ovr": {
+        "benchmark": 0.88,
+        "model": 0.6938783829070365,
+        "delta": -0.1861216170929635
+      }
+    }
+  }
+]

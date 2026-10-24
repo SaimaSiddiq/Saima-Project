@@ -1,0 +1,81 @@
+{
+  "train": {
+    "csv": "E:\\ThesisProject\\RoomaProject\\data\\processed\\csv\\mass_train_mapped.csv",
+    "csv_exists": true,
+    "rows": 1318,
+    "columns": [
+      "patient_id",
+      "breast_density",
+      "left or right breast",
+      "image view",
+      "abnormality id",
+      "abnormality type",
+      "mass shape",
+      "mass margins",
+      "assessment",
+      "pathology",
+      "subtlety",
+      "image file path",
+      "cropped image file path",
+      "ROI mask file path",
+      "lookup_key",
+      "image_path"
+    ],
+    "missing_required_columns": [],
+    "image_exists_count": 1318,
+    "image_missing_count": 0,
+    "image_missing_examples": [],
+    "class_counts": {
+      "MALIGNANT": 637,
+      "BENIGN": 577,
+      "BENIGN_WITHOUT_CALLBACK": 104
+    },
+    "class_percent": {
+      "MALIGNANT": 48.33,
+      "BENIGN": 43.78,
+      "BENIGN_WITHOUT_CALLBACK": 7.89
+    }
+  },
+  "test": {
+    "csv": "E:\\ThesisProject\\RoomaProject\\data\\processed\\csv\\mass_test_mapped.csv",
+    "csv_exists": true,
+    "rows": 378,
+    "columns": [
+      "patient_id",
+      "breast_density",
+      "left or right breast",
+      "image view",
+      "abnormality id",
+      "abnormality type",
+      "mass shape",
+      "mass margins",
+      "assessment",
+      "pathology",
+      "subtlety",
+      "image file path",
+      "cropped image file path",
+      "ROI mask file path",
+      "lookup_key",
+      "image_path"
+    ],
+    "missing_required_columns": [],
+    "image_exists_count": 378,
+    "image_missing_count": 0,
+    "image_missing_examples": [],
+    "class_counts": {
+      "BENIGN": 194,
+      "MALIGNANT": 147,
+      "BENIGN_WITHOUT_CALLBACK": 37
+    },
+    "class_percent": {
+      "BENIGN": 51.32,
+      "MALIGNANT": 38.89,
+      "BENIGN_WITHOUT_CALLBACK": 9.79
+    }
+  },
+  "recommendations": [
+    "Image mapping looks good (0 missing image paths).",
+    "Dataset is imbalanced (max/min >= 2). Use class weights and consider oversampling minority class.",
+    "Do focused EDA: per-class counts, missing-value audit, and path-level duplicate checks."
+  ]
+}

@@ -1,0 +1,46 @@
+# Large data — not tracked
+data/
+checkpoints/
+*.ckpt
+*.pth
+*.pt
+
+# DICOM / raw images
+*.dcm
+*.tcia
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+.env
+venv/
+env/
+DS_env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Large outputs
+*.docx
+*.log
+results/xai/gradcam/
+results/xai/attention/
+
+# Keep results structure but not heavy outputs
+!results/.gitkeep
+!results/logs/.gitkeep
+!results/diagrams/

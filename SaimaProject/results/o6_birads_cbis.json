@@ -1,0 +1,52 @@
+[
+  {
+    "n_valid_birads": 378,
+    "birads_accuracy": 0.10582010582010581,
+    "birads_labels": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "birads_confusion_matrix": [
+      [
+        12,
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        57,
+        28,
+        0,
+        0,
+        0
+      ],
+      [
+        68,
+        101,
+        0,
+        0,
+        0
+      ],
+      [
+        30,
+        45,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "birads_pred_pathology_spearman_corr": 0.13458203779259165,
+    "birads_pred_pathology_spearman_pvalue": 0.008797187098630173
+  }
+]

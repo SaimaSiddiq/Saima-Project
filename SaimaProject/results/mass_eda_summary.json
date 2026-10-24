@@ -1,0 +1,71 @@
+{
+  "train": {
+    "rows": 1318,
+    "cols": [
+      "patient_id",
+      "breast_density",
+      "left or right breast",
+      "image view",
+      "abnormality id",
+      "abnormality type",
+      "mass shape",
+      "mass margins",
+      "assessment",
+      "pathology",
+      "subtlety",
+      "image file path",
+      "cropped image file path",
+      "ROI mask file path",
+      "lookup_key",
+      "image_path"
+    ],
+    "missing_nonzero": {
+      "mass margins": 43,
+      "mass shape": 4
+    },
+    "duplicated_rows": 0,
+    "duplicated_image_path": 87,
+    "class_counts": {
+      "MALIGNANT": 637,
+      "BENIGN": 577,
+      "BENIGN_WITHOUT_CALLBACK": 104
+    },
+    "imbalance_ratio_max_min": 6.125
+  },
+  "test": {
+    "rows": 378,
+    "cols": [
+      "patient_id",
+      "breast_density",
+      "left or right breast",
+      "image view",
+      "abnormality id",
+      "abnormality type",
+      "mass shape",
+      "mass margins",
+      "assessment",
+      "pathology",
+      "subtlety",
+      "image file path",
+      "cropped image file path",
+      "ROI mask file path",
+      "lookup_key",
+      "image_path"
+    ],
+    "missing_nonzero": {
+      "mass margins": 17
+    },
+    "duplicated_rows": 0,
+    "duplicated_image_path": 17,
+    "class_counts": {
+      "BENIGN": 194,
+      "MALIGNANT": 147,
+      "BENIGN_WITHOUT_CALLBACK": 37
+    },
+    "imbalance_ratio_max_min": 5.243
+  },
+  "notes": {
+    "leakage_risk_columns_present": [],
+    "has_image_path": true
+  }
+}

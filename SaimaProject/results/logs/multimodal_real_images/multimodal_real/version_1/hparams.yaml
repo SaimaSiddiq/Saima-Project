@@ -1,0 +1,21 @@
+cfg:
+  accumulate_grad_batches: 2
+  batch_size: 12
+  clinical_dropout_p: 0.3
+  clinical_input_dim: 45
+  dropout: 0.4
+  early_stop_monitor: val_acc
+  early_stop_patience: 30
+  focal_gamma: 2.0
+  fusion_dim: 256
+  image_backbone: densenet201
+  label_smoothing: 0.05
+  loss_type: focal
+  lr: 0.0001
+  max_epochs: 200
+  num_classes: 3
+  num_workers: 4
+  use_weighted_sampler: true
+  val_split: 0.15
+  warmup_image_only_epochs: 30
+  weight_decay: 0.0001
